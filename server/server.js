@@ -1,12 +1,25 @@
 import express from "express";
+import connectDB from "./config/db.js";
+import dotenv from "dotenv";
+import taskRoutes from "./routes/taskRoutes.js"
+
+dotenv.config();
 
 const app = express();
+
+connectDB();
+
+
+app.use(express.json());
+
+app.use("/api/tasks",taskRoutes);
+
 
 app.get("/", (req, res) => {
     res.send("TaskFlow API Running");
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
