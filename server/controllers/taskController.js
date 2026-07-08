@@ -2,12 +2,11 @@ import Task from "../models/Task.js";
 
 export const createTask = async (req,res) => {
     try{
-        const {title, description, completed} = req.body;
+        const {title, description} = req.body;
 
         const task = await Task.create({
             title,
             description,
-            completed,
             user: req.user.userId
         })
 
@@ -52,7 +51,7 @@ export const updateTask = async (req, res ) => {
 
         task.title = req.body.title ?? task.title;
         task.description = req.body.description ?? task.description;
-        task.completed = req.body.completed ?? task.completed;
+        task.status = req.body.status ?? task.status;
 
         await task.save();
 
