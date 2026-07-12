@@ -1,6 +1,6 @@
 function Navbar() {
   return (
-    <nav className="w-full border-b border-slate-200 bg-white">
+    <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
 
         {/* Logo */}
