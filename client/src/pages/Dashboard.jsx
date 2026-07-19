@@ -6,6 +6,8 @@ import KanbanColumn from "../components/dashboard/KanbanColumn";
 import TaskCard from "../components/dashboard/TaskCard";
 import CreateTaskModal from "../components/dashboard/CreateTaskModal";
 
+import toast from "react-hot-toast";
+
 import api from "../api/axios";
 
 function Dashboard() {
@@ -36,6 +38,22 @@ function Dashboard() {
     try{
       await api.delete(`/tasks/${id}`);
 
+      toast.success("Task deleted successfully!");
+
+      fetchTasks();
+    }catch (error) {
+      console.error(error.response?.data || error.message);
+    }
+  };
+
+  const changeStatus = async (id, newStatus) => {
+    try{
+      await api.put(`/tasks/${id}`, {
+        status: newStatus,
+      });
+
+      toast.success("Task status updated!");
+      
       fetchTasks();
     }catch (error) {
       console.error(error.response?.data || error.message);
@@ -111,6 +129,9 @@ function Dashboard() {
                   setShowModal(true)
                  }}
                  onDelete={() => deleteTask(task._id)}
+                 onStatusChange={(newStatus) =>
+                  changeStatus(task._id, newStatus)
+                }
               />
             ))}
         </KanbanColumn>
@@ -128,6 +149,9 @@ function Dashboard() {
                   setShowModal(true);
                  }}
                  onDelete={() => deleteTask(task._id)}
+                 onStatusChange={(newStatus) =>
+                  changeStatus(task._id, newStatus)
+                }
               />
              ))}
         </KanbanColumn>
@@ -145,6 +169,9 @@ function Dashboard() {
                   setShowModal(true);
                  }}
                  onDelete={() => deleteTask(task._id)}
+                 onStatusChange={(newStatus) =>
+                  changeStatus(task._id, newStatus)
+                }
               />
              ))}
         </KanbanColumn>
@@ -162,6 +189,9 @@ function Dashboard() {
                   setShowModal(true);
                  }}
                  onDelete={() => deleteTask(task._id)}
+                 onStatusChange={(newStatus) =>
+                  changeStatus(task._id, newStatus)
+                }
               />
              ))}
         </KanbanColumn>

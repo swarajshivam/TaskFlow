@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Input from "../ui/Input";
 import api from "../../api/axios";
+import toast from "react-hot-toast";
 
 function CreateTaskModal({ onClose, fetchTasks, task }) {
 
@@ -28,11 +29,16 @@ function CreateTaskModal({ onClose, fetchTasks, task }) {
                     description,
                     status: task.status
                 });
+
+                toast.success("Task updated successfully!");
+
             } else {
                 response = await api.post("/tasks", {
                     title,
                     description
                 });
+
+                toast.success("Task created successfully!");
             }
 
             console.log(response.data);
