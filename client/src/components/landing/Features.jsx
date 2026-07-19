@@ -32,16 +32,16 @@ const features = [
 
 function Features() {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-white py-24 transition-colors duration-300 dark:bg-slate-900">
       <div className="mx-auto max-w-7xl px-6">
 
         <div className="text-center">
 
-          <h2 className="text-4xl font-bold text-slate-900">
+          <h2 className="text-4xl font-bold text-slate-900 dark:text-slate-100">
             Why Choose TaskFlow?
           </h2>
 
-          <p className="mt-4 text-lg text-slate-600">
+          <p className="mt-4 text-lg text-slate-600 transition-colors duration-300 dark:text-slate-400">
             Everything you need to organize projects,
             collaborate with your team,
             and stay productive.

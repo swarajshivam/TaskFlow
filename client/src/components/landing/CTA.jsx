@@ -7,11 +7,11 @@ function CTA() {
           Ready to Organize Your Work?
         </h2>
 
-        <p className="mt-4 text-lg text-indigo-100">
+        <p className="mt-4 text-lg text-indigo-100 transition-colors duration-300">
           Join TaskFlow and boost your productivity today.
         </p>
 
-        <button className="mt-8 rounded-xl bg-white px-8 py-3 font-semibold text-indigo-600 transition hover:bg-slate-100">
+        <button className="mt-8 rounded-xl bg-white px-8 py-3 font-semibold text-indigo-600 transition-all duration-300 hover:-translate-y-1 hover:bg-slate-100 hover:shadow-lg">
           Get Started
         </button>
 
