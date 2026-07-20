@@ -1,4 +1,5 @@
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../context/useTheme";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const { theme, toggleTheme } = useTheme();
@@ -7,23 +8,44 @@ function Navbar() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
 
         {/* Logo */}
-        <h1 className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+        <Link
+          to="/"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="text-2xl font-bold text-indigo-600 dark:text-indigo-400"
+        >
           TaskFlow
-        </h1>
+          </Link>
+
+          
 
         {/* Navigation */}
         <ul className="hidden gap-8 text-slate-700 md:flex dark:text-slate-300">
-          <li className="cursor-pointer transition-colors hover:text-indigo-600 dark:hover:text-indigo-400">
-            Features
-          </li>
+          <li>
+            <a
+              href="#features"
+              className="cursor-pointer transition-colors hover:text-indigo-600 dark:hover:text-indigo-400"
+            >
+              Features
+              </a>
+            </li>
 
-          <li className="cursor-pointer hover:text-indigo-600">
-            How It Works
-          </li>
+          <li>
+            <a
+              href="#how-it-works"
+              className="cursor-pointer transition-colors hover:text-indigo-600 dark:hover:text-indigo-400"
+            >
+              How It Works 
+              </a>
+            </li>
 
-          <li className="cursor-pointer hover:text-indigo-600">
-            FAQ
-          </li>
+          <li>
+            <a
+              href="#faq"
+              className="cursor-pointer transition-colors hover:text-indigo-600 dark:hover:text-indigo-400"
+            >
+               FAQ
+              </a>  
+             </li> 
         </ul>
 
         {/* Buttons */}
@@ -36,13 +58,21 @@ function Navbar() {
             {theme === "light" ? "🌙" : "☀️"}
           </button>
 
-          <button className="font-medium text-slate-700 transition-colors hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400">
+          <Link
+            to="/login"
+            className="font-medium text-slate-700 transition-colors hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
+          >
             Login
-          </button>
+          </Link>
+            
 
-          <button className="rounded-xl bg-indigo-600 px-5 py-2 text-white transition hover:bg-indigo-700">
+          <Link
+            to="/register"
+            className="rounded-xl bg-indigo-600 px-5 py-2 text-white transition hover:bg-indigo-700"
+          >
             Get Started
-          </button>
+          </Link>
+            
 
         </div>
 

@@ -2,7 +2,7 @@ import { FaPlusCircle, FaColumns, FaCheckCircle } from "react-icons/fa";
 
 function HowItWorks() {
   return (
-    <section className="bg-slate-50 py-24 transition-colors duration-300 dark:bg-slate-950">
+    <section id="how-it-works" className="bg-slate-50 py-24 transition-colors duration-300 dark:bg-slate-950">
       <div className="mx-auto max-w-7xl px-6">
 
         {/* Heading */}

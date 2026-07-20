@@ -1,5 +1,5 @@
-import { useTheme } from "../context/ThemeContext";
-
+import { useTheme } from "../context/useTheme";
+import { Link } from "react-router-dom";
 
 function AuthLayout({ children }) {
   const { theme, toggleTheme } = useTheme();
@@ -21,9 +21,12 @@ function AuthLayout({ children }) {
               </div>
 
               <div>
-                <h2 className="text-3xl font-bold">
+                <Link
+                  to="/"
+                  className="text-3xl font-bold"
+                >
                   TaskFlow
-                </h2>
+                </Link>  
 
                 <p className="text-sm text-indigo-100">
                   Productivity Simplified

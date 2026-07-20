@@ -22,12 +22,12 @@ function Register() {
     }
 
     try {
-      const response = await api.post("/auth/register", {
+      await api.post("/auth/register", {
         name, 
         email,
         password
     });
-      console.log(response.data);
+      
 
       navigate("/login");
     } catch (error) {

@@ -1,6 +1,6 @@
 function FAQ() {
   return (
-    <section className="bg-slate-50 py-24 transition-colors duration-300 dark:bg-slate-950">
+    <section id="faq" className="bg-slate-50 py-24 transition-colors duration-300 dark:bg-slate-950">
       <div className="mx-auto max-w-4xl px-6">
 
         <div className="text-center">

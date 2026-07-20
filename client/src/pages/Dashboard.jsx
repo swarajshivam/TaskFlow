@@ -20,11 +20,15 @@ function Dashboard() {
     try {
       const response = await api.get("/tasks");
 
-      console.log(response.data);
+      
 
       setTasks(response.data);
     } catch(error) {
       console.error(error.response?.data || error.message);
+
+      toast.error(
+        error.response?.data?.message || "Failed to load tasks."
+      );
     }
   };
 
@@ -43,6 +47,10 @@ function Dashboard() {
       fetchTasks();
     }catch (error) {
       console.error(error.response?.data || error.message);
+
+      toast.error(
+        error.response?.data?.message || "Failed to delete task."
+      );
     }
   };
 
@@ -53,10 +61,14 @@ function Dashboard() {
       });
 
       toast.success("Task status updated!");
-      
+
       fetchTasks();
     }catch (error) {
       console.error(error.response?.data || error.message);
+
+      toast.error(
+        error.response?.data?.message || "Failed to update task status."
+      );
     }
   };
 
@@ -114,6 +126,21 @@ function Dashboard() {
 
       </div>
 
+      {tasks.length === 0 ? (
+        <div className="mt-16 flex flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white py-20 text-center dark:border-slate-700 dark:bg-slate-900">
+          <div className="text-6xl">📋</div>
+
+          <h2 className="mt-6 text-2xl font-bold text-slate-800 dark:text-slate-100">
+             No tasks yet
+          </h2>
+
+           <p className="mt-2 text-slate-500 dark:text-slate-400">
+             Click the <span className="font-semibold">"+ Add Task"</span> button to create your first task.
+          </p>
+       </div>
+
+      ): (
+
       <div className="mt-10 grid gap-6 lg:grid-cols-4">
 
         <KanbanColumn title="Todo">
@@ -124,6 +151,7 @@ function Dashboard() {
                  key={task._id}
                  title={task.title}
                  description={task.description}
+                 status={task.status}
                  onClick={() => {
                   setSelectedTask(task);
                   setShowModal(true)
@@ -144,6 +172,7 @@ function Dashboard() {
                  key={task._id}
                  title={task.title}
                  description={task.description}
+                 status={task.status}
                  onClick={() => {
                   setSelectedTask(task);
                   setShowModal(true);
@@ -163,7 +192,8 @@ function Dashboard() {
               <TaskCard 
                  key={task._id}
                  title={task.title}
-                 description={task.description}
+                 description={task.description}status={task.status}
+                 status={task.status}
                  onClick={() => {
                   setSelectedTask(task);
                   setShowModal(true);
@@ -184,6 +214,7 @@ function Dashboard() {
                  key={task._id}
                  title={task.title}
                  description={task.description}
+                 status={task.status}
                  onClick={() => {
                   setSelectedTask(task);
                   setShowModal(true);
@@ -197,6 +228,7 @@ function Dashboard() {
         </KanbanColumn>
 
       </div>
+      )}
 
       {showModal &&(
         <CreateTaskModal

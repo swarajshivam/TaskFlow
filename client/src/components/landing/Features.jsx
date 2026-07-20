@@ -32,7 +32,7 @@ const features = [
 
 function Features() {
   return (
-    <section className="bg-white py-24 transition-colors duration-300 dark:bg-slate-900">
+    <section id="features"  className="bg-white py-24 transition-colors duration-300 dark:bg-slate-900">
       <div className="mx-auto max-w-7xl px-6">
 
         <div className="text-center">

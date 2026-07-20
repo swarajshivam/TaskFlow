@@ -7,6 +7,7 @@ function CreateTaskModal({ onClose, fetchTasks, task }) {
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (task) {
@@ -15,16 +16,22 @@ function CreateTaskModal({ onClose, fetchTasks, task }) {
         }
     }, [task]);
 
-    console.log(task);
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!title.trim()) {
+          toast.error("Title is required.");
+          return;
+        }
+
+        setLoading(true);
+
         try{
-            let response;
 
             if(task) {
-                response = await api.put(`/tasks/${task._id}`, {
+                await api.put(`/tasks/${task._id}`, {
                     title,
                     description,
                     status: task.status
@@ -33,7 +40,7 @@ function CreateTaskModal({ onClose, fetchTasks, task }) {
                 toast.success("Task updated successfully!");
 
             } else {
-                response = await api.post("/tasks", {
+                await api.post("/tasks", {
                     title,
                     description
                 });
@@ -41,7 +48,6 @@ function CreateTaskModal({ onClose, fetchTasks, task }) {
                 toast.success("Task created successfully!");
             }
 
-            console.log(response.data);
 
             setTitle("");
             setDescription("");
@@ -51,6 +57,10 @@ function CreateTaskModal({ onClose, fetchTasks, task }) {
             onClose();
         } catch (error) {
             console.error(error.response?.data || error.message);
+
+            toast.error(error.response?.data?.message || "Something went wrong!");
+        } finally {
+          setLoading(false);
         }
     }
 
@@ -87,6 +97,7 @@ function CreateTaskModal({ onClose, fetchTasks, task }) {
             <button
               type="button"
               onClick={onClose}
+              disabled={loading}
               className="rounded-lg border border-slate-300 px-5 py-2 text-slate-700 transition-colors duration-300 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800"
             >
               Cancel
@@ -94,9 +105,17 @@ function CreateTaskModal({ onClose, fetchTasks, task }) {
 
             <button
               type="submit"
+              disabled={loading}
               className="rounded-lg bg-indigo-600 px-5 py-2 text-white transition-colors duration-300 hover:bg-indigo-700"
             >
-              {task ? "Update" : "Create"}
+              {loading
+                ? task
+                  ? "Updating..."
+                  : "Creating..."
+                : task
+                  ? "Update"
+                  : "Create"  
+              }
             </button>
 
           </div>

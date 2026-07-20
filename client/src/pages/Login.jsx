@@ -25,7 +25,7 @@ function Login() {
   localStorage.setItem("token", response.data.token);
 
   // Show response (optional)
-  console.log(response.data);
+  
 
   // Redirect to dashboard
   navigate("/dashboard");

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Hero() {
   return (
     <section className="bg-slate-50 pt-10 transition-colors duration-300 dark:bg-slate-950">
@@ -21,9 +23,13 @@ function Hero() {
 
         <div className="mt-8 flex gap-4">
 
-          <button className="rounded-xl bg-indigo-600 px-7 py-3 font-medium text-white transition-all duration-300 hover:-translate-y-1 hover:bg-indigo-700 hover:shadow-lg">
+          <Link
+            to="/register" 
+            className="rounded-xl bg-indigo-600 px-7 py-3 font-medium text-white transition-all duration-300 hover:-translate-y-1 hover:bg-indigo-700 hover:shadow-lg"
+           >
             Get Started
-          </button>
+            </Link>   
+            
 
           <button className="rounded-xl border border-slate-300 bg-white px-7 py-3 font-medium text-slate-700 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-600 hover:text-indigo-600 hover:shadow-lg dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-indigo-400 dark:hover:text-indigo-400">
             Live Demo
