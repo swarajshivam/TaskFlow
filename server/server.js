@@ -18,8 +18,8 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://task-flow-lemon-omega.vercel.app/"
-     ],
+      "https://task-flow-lemon-omega.vercel.app",
+    ],
     credentials: true,
   })
 );
